@@ -13,7 +13,7 @@
 # limitations under the License.
 
 module "gcs-data" {
-  source         = "../../../modules/gcs"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v18.0.0"
   project_id     = module.project.project_id
   prefix         = var.prefix
   name           = "data"
@@ -24,7 +24,7 @@ module "gcs-data" {
 }
 
 module "gcs-df-tmp" {
-  source         = "../../../modules/gcs"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v18.0.0"
   project_id     = module.project.project_id
   prefix         = var.prefix
   name           = "df-tmp"
@@ -35,7 +35,7 @@ module "gcs-df-tmp" {
 }
 
 module "bigquery-dataset" {
-  source     = "../../../modules/bigquery-dataset"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v18.0.0"
   project_id = module.project.project_id
   id         = "datalake"
   location   = var.region

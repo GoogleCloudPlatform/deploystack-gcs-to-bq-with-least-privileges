@@ -13,25 +13,25 @@
 # limitations under the License.
 
 module "service-account-bq" {
-  source     = "../../../modules/iam-service-account"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0"
   project_id = module.project.project_id
   name       = "bq-datalake"
 }
 
 module "service-account-landing" {
-  source     = "../../../modules/iam-service-account"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0"
   project_id = module.project.project_id
   name       = "gcs-landing"
 }
 
 module "service-account-orch" {
-  source     = "../../../modules/iam-service-account"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0"
   project_id = module.project.project_id
   name       = "orchestrator"
 }
 
 module "service-account-df" {
-  source     = "../../../modules/iam-service-account"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0"
   project_id = module.project.project_id
   name       = "df-loading"
 }
