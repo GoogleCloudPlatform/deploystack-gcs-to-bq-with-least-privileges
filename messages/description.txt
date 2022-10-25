@@ -1,0 +1,4 @@
+This process will create and configure:
+* GCS bucket
+* Dataflow pipeline
+* BigQuery instance
