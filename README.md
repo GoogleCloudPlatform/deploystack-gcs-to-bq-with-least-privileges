@@ -64,7 +64,7 @@ Before we deploy the architecture, you will need the following information:
 * A __unique prefix__ that you want all the deployed resources to have (for example: awesomestartup). This must be a string with no spaces or tabs.
 * A __list of Groups or Users__ with Service Account Token creator role on Service Accounts in IAM format, eg 'group:group@domain.com'.
 
-Click on the image below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
+Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
 
 [<p align="center"> ![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)</p>](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-gcs-to-bq-with-least-privileges&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
 
