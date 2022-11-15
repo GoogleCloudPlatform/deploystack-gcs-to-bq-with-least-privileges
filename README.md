@@ -56,8 +56,6 @@ __Note__: To grant a user a role, take a look at the [Granting and Revoking Acce
 
 ### Spinning up the architecture
 
-#### Step 1: Cloning the repository
-
 Before we deploy the architecture, you will need the following information:
 
 * The __service project ID__.
