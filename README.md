@@ -56,57 +56,23 @@ __Note__: To grant a user a role, take a look at the [Granting and Revoking Acce
 
 ### Spinning up the architecture
 
-#### Step 1: Cloning the repository
-
-Click on the button below, sign in if required and when the prompt appears, click on “confirm”.
-
-[<p align="center"> <img alt="Open Cloudshell" width = "250" src="shell_button.png" /> </p>](https://goo.gle/GoDataPipe)
-
-This will clone the repository to your cloud shell and a screen like this one will appear:
-
-![cloud_shell](cloud_shell.png)
-
-Before you deploy the architecture, make sure you run the following command to move your cloudshell session into your service project:
-
-        gcloud config set project [SERVICE_PROJECT_ID]
-
-Once you can see your service project id in the yellow parenthesis, you’re ready to start.
-
 Before we deploy the architecture, you will need the following information:
 
 * The __service project ID__.
 * A __unique prefix__ that you want all the deployed resources to have (for example: awesomestartup). This must be a string with no spaces or tabs.
 * A __list of Groups or Users__ with Service Account Token creator role on Service Accounts in IAM format, eg 'group:group@domain.com'.
 
-#### Step 2: Deploying the resources
+Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
 
-1. Once you have the required information, head back to the cloud shell editor. Make sure you’re in the following directory:
+[<p align="center"> ![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)</p>](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-gcs-to-bq-with-least-privileges&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
 
-        cloudshell_open/cloud-foundation-fabric/blueprints/data-solutions/gcs-to-bq-with-least-privileges
+This is the startup screen that appears after clicking the button and confirming:
 
-2. In the editor, edit the terraform.tfvars.sample file with the variables you gathered in the step above.
+![cloud_shell](cloud_shell.png)
 
-![editor](editor.png)
+During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
 
-* a. Fill in __data_eng_principals__ with the list of Users or Groups to impersonate service accounts.
-
-* b. Fill in __project_id__ with the service project ID.
-
-* c. Fill in the prefix with your chosen unique prefix for resources.
-
-* d. Save the file with __Ctrl(or ⌘)+S__ or by going to __File → Save__.
-
-3. Then, run the following commands:
-
-        terraform init
-        
-        terraform apply -var-file=terraform.tfvars.sample -auto-approve
-
-The resource creation will take a few minutes, at the end this is the output you should expect for successful completion along with a list of the created resources:
-
-![output](output.png)
-
-__Congratulations!__ You have successfully deployed the foundation for running your first ETL pipeline on Google Cloud.
+__Congratulations!__ You have now successfully deployed the foundation for running your first ETL pipeline on Google Cloud.
 
 ### Testing your architecture
 
@@ -125,7 +91,7 @@ Again, make sure you’re in the following directory:
 
         cloudshell_open/cloud-foundation-fabric/blueprints/data-solutions/gcs-to-bq-with-least-privileges
 
-For the purpose of the example we will import from GCS to Bigquery a CSV file with the following structure:
+For the purpose of the example we will import a CSV file from GCS to BigQuery. This has the following structure:
 
         name,surname,timestamp
 
@@ -135,13 +101,13 @@ We need to create 3 files:
 * A person_udf.js containing the [UDF javascript file](https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions) used by the Dataflow template.
 * A person_schema.json file containing the table schema used to import the CSV.
 
-An example of those files can be found  in the folder ./data-demo. Inside the same repository where you ran the terraform commands.
+An example of those files can be found  in the folder ./data-demo inside the same repository you're currently in.
 
 You can copy the example files into the GCS bucket by running:
 
         gsutil -i gcs-landing@$SERVICE_PROJECT_ID.iam.gserviceaccount.com cp data-demo/* gs://$PREFIX-data
 
-Once this is done, the 3 files necessary to run the Dataflow Job will have been copied to the GCS bucket that was created along with the resources.
+Once this is done, the three files necessary to run the Dataflow Job will have been copied to the GCS bucket that was created along with the resources.
 
 Run the following command to start the dataflow job:
 
@@ -161,7 +127,7 @@ Run the following command to start the dataflow job:
     outputTable=$SERVICE_PROJECT_ID:datalake.person,\
     bigQueryLoadingTemporaryDirectory=gs://$PREFIX-df-tmp
 
-This command will start a dataflow job called test_batch_01 that uses a Dataflow transformation script stored in the public GCS bucket:
+This command will start a Dataflow job called test_batch_01 that uses a Dataflow transformation script stored in the public GCS bucket:
 
         gs://dataflow-templates/latest/GCS_Text_to_BigQuery.
 
@@ -184,9 +150,13 @@ Once the job completes, you can navigate to BigQuery in the console and under __
 
 The easiest way to remove all the deployed resources is to run the following command in Cloud Shell:
 
-        terraform destroy -var-file=terraform.tfvars.sample -auto-approve
-  
+``` {shell}
+deploystack uninstall
+```
+
 The above command will delete the associated resources so there will be no billable charges made afterwards.
+
+Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
 <!-- BEGIN TFDOC -->
 
 ## Variables
