@@ -24,6 +24,8 @@ terraform {
       version = ">= 4.32.0" # tftest
     }
   }
+
+  provider_meta "google" {
+    module_name = "cloud-solutions/gcs-to-bq-with-least-privileges-v1.0"
+  }
 }
-
-
