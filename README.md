@@ -72,7 +72,11 @@ This is the startup screen that appears after clicking the button and confirming
 
 During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
 
-__Congratulations!__ You have now successfully deployed the foundation for running your first ETL pipeline on Google Cloud.
+<center>
+<h4>🎉 Congratulations! 🎉  <br />
+You have successfully deployed the foundation for running your first ETL pipeline on Google Cloud.</h4></center>
+
+
 
 ### Testing your architecture
 
