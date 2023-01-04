@@ -116,6 +116,7 @@ module "project" {
     "cloudkms.googleapis.com",
     "compute.googleapis.com",
     "dataflow.googleapis.com",
+    "iam.googleapis.com",
     "servicenetworking.googleapis.com",
     "storage.googleapis.com",
     "storage-component.googleapis.com",
