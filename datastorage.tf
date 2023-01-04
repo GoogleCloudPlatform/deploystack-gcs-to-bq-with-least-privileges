@@ -24,7 +24,7 @@ module "gcs-data" {
 }
 
 module "gcs-df-tmp" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v18.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v19.0.0"
   project_id     = module.project.project_id
   prefix         = var.prefix
   name           = "df-tmp"
