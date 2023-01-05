@@ -103,7 +103,7 @@ locals {
 }
 
 module "project" {
-  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v18.0.0"
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
   name            = var.project_id
   parent          = try(var.project_create.parent, null)
   billing_account = try(var.project_create.billing_account_id, null)
@@ -116,6 +116,7 @@ module "project" {
     "cloudkms.googleapis.com",
     "compute.googleapis.com",
     "dataflow.googleapis.com",
+    "iam.googleapis.com",
     "servicenetworking.googleapis.com",
     "storage.googleapis.com",
     "storage-component.googleapis.com",
