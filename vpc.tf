@@ -28,10 +28,10 @@ module "vpc" {
 }
 
 module "vpc-firewall" {
-  source       = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0"
-  count        = local.use_shared_vpc ? 0 : 1
-  project_id   = module.project.project_id
-  network      = module.vpc[0].name
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0"
+  count      = local.use_shared_vpc ? 0 : 1
+  project_id = module.project.project_id
+  network    = module.vpc[0].name
   default_rules_config = {
     admin_ranges = [var.vpc_subnet_range]
   }
