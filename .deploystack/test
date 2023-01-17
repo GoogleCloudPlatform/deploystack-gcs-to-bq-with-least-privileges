@@ -61,8 +61,7 @@ function evalTest() {
 
 get_project_id PROJECT
 get_project_number PROJECT_NUMBER $PROJECT
-# TODO: Script is pretty rudimentary, so make sure all of these variables are actually needed for test
-PREFIX=deploystack-test
+PREFIX=deploystack
 PROJECT_ID=$PROJECT
 REGION=europe-west1
 CMEK_ENCRYPTION=true
@@ -70,7 +69,6 @@ CMEK_ENCRYPTION=true
 gcloud config set project ${PROJECT}
 
 terraform init
-# TODO: Make sure all of these variables are correct and actually need to be passed in.:
 terraform apply \
    -var prefix=$PREFIX \
    -var project_id=$PROJECT_ID \
@@ -105,8 +103,6 @@ section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modul
     evalTest 'gcloud projects describe ${PROJECT_ID} --format="value(name)"' "${PROJECT}"
 section_close
 
-
-# TODO: Make sure all of these variables are correct and actually need to be passed in.:
 terraform destroy \
    -var prefix=$PREFIX \
    -var project_id=$PROJECT_ID \
@@ -138,6 +134,6 @@ section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modul
 section_close
 
 printf "$DIVIDER"
-printf "CONGRATS!!!!!!! \n"
-printf "You got the end the of your test with everything working. \n"
+printf "CONGRATS!!!!!!!\n"
+printf "You got the end the of your test with everything working.\n"
 printf "$DIVIDER"
