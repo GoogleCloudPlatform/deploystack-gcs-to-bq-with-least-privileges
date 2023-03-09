@@ -19,19 +19,19 @@ module "service-account-bq" {
 }
 
 module "service-account-landing" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0"
   project_id = module.project.project_id
   name       = "gcs-landing"
 }
 
 module "service-account-orch" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0"
   project_id = module.project.project_id
   name       = "orchestrator"
 }
 
 module "service-account-df" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0"
   project_id = module.project.project_id
   name       = "df-loading"
 }
