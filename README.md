@@ -76,8 +76,6 @@ During the process, you will be asked for some user input. All necessary variabl
 <h4>🎉 Congratulations! 🎉  <br />
 You have successfully deployed the foundation for running your first ETL pipeline on Google Cloud.</h4></center>
 
-
-
 ### Testing your architecture
 
 For the purpose of demonstrating how the ETL pipeline flow works, we’ve set up an example pipeline for you to run.  First of all, we assume all the steps are run using a user listed on the __data_eng_principles__ variable (or a user that belongs to one of the groups you specified). Authenticate the user using the following command and make sure your active cloudshell session is set to the __service project__:
@@ -161,6 +159,17 @@ deploystack uninstall
 The above command will delete the associated resources so there will be no billable charges made afterwards.
 
 Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
+
+## Standalone deployment
+
+Since the scripts are based on Terraform, it is possible to deploy this solution through `Terraform` directly, without having to go through `Deploystack`.
+Just clone this repo, create a `terraform.tfvars` file with your own values and call the following commands:
+``` {shell}
+terraform init
+terraform plan -out=execplan.out
+terraform apply execplan.out
+```
+
 <!-- BEGIN TFDOC -->
 
 ## Variables
