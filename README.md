@@ -1,3 +1,4 @@
+[![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
 # Spinning up a foundation data pipeline on Google Cloud using Cloud Storage, Dataflow and BigQuery
 
 ## Introduction
