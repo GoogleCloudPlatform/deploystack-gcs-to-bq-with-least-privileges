@@ -14,7 +14,7 @@
 
 module "kms" {
   count      = var.cmek_encryption ? 1 : 0
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/kms?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/kms?ref=v22.0.0"
   project_id = module.project.project_id
   keyring = {
     name     = "${var.prefix}-keyring"
