@@ -24,7 +24,7 @@ module "gcs-data" {
 }
 
 module "gcs-df-tmp" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v20.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v23.0.0"
   project_id     = module.project.project_id
   prefix         = var.prefix
   name           = "df-tmp"
@@ -35,7 +35,7 @@ module "gcs-df-tmp" {
 }
 
 module "bigquery-dataset" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v23.0.0"
   project_id = module.project.project_id
   id         = "datalake"
   location   = var.region
