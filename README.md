@@ -13,6 +13,8 @@ An ETL pipeline is defined in three steps:
 
 You can learn more about cloud-based ETL [here](https://cloud.google.com/learn/what-is-etl).
 
+This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/gcs-to-bq-with-least-privileges).
+
 ## Use cases
 
 Whether you’re transferring from another Cloud Service Provider or you’re taking your first steps into the cloud with Google Cloud, building a data pipeline sets a good foundation to begin deriving insights for your business.
