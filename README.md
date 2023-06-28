@@ -1,15 +1,15 @@
 [![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
-# Spinning up a foundation data pipeline on Google Cloud using Cloud Storage, Dataflow and BigQuery
+# Foundation Data Pipeline with Google Cloud
 
 ## Introduction
 
-This repository contains the necessary Terraform modules to securely deploy a basic ETL pipeline that will dump data from a Google Cloud Storage (GCS) bucket to tables in BigQuery.
+_This architecture uses click-to-deploy so you can spin up infrastructure in minutes using terraform!_
 
-An ETL pipeline is defined in three steps:
+In today's world, data matters more than ever. It can be used to make better decisions, improve efficiency, and gain a competitive edge. However, data management can be challenging. It can be difficult to keep data organized, secure, and accessible.
 
-* Extraction: retrieving data from sources.
-* Transformation: cleaning the data, putting it into a common format, calculating other fields, taking out duplicates or erroneous records so it can be stored into a target.
-* Loading: inserting the formatted data into the target database, data store, data warehouse or data lake.
+That's where data pipelines come in. Data pipelines are a set of processes that move data from one place to another. They can be used to collect data from different sources, transform it, and load it into a data warehouse or data lake.
+
+The following **click-to-deploy** architecture deploys a secure and scalable data pipeline that can help you to achieve data agility with **Google Cloud Storage, Dataflow and BigQuery**. It uses the least privilege principles to ensure that only the minimum amount of permissions are required to transfer data.
 
 You can learn more about cloud-based ETL [here](https://cloud.google.com/learn/what-is-etl).
 
@@ -19,11 +19,15 @@ This repo is based on the Cloud Foundation Fabric blueprint available [here](htt
 
 Whether you’re transferring from another Cloud Service Provider or you’re taking your first steps into the cloud with Google Cloud, building a data pipeline sets a good foundation to begin deriving insights for your business.
 
-* __Anomaly Detection__: building data pipelines to identify cyber security threats or fraudulent transactions using machine learning (ML) models.
-* __Interactive Data Analysis__: carry out interactive data analysis with BigQuery BI Engine that enables you to analyze large and complex datasets interactively with sub-second query response time and high concurrency.
-* __Predictive Forecasting__: building solid pipelines to capture real-time data for ML modeling and using it as a forecasting engine for situations ranging from weather predictions to market forecasting.
-* __Create Machine Learning models__: using BigQueryML you can create and execute machine learning models in BigQuery using standard SQL queries. Create a variety of models pre-built into BigQuery that you train with your data.
+These are some examples of the use cases you can build on top of this architecture:
 
+* **Any application that requires some kind of transformation to data to be able to analyze it**
+* **Data Privacy:** Dataflow allows you to call the Data Loss Prevention API to identify PII that you might not want to have in a readable format and de-identify it.
+* **Anomaly Detection:** building data pipelines to identify cyber security threats or fraudulent transactions using machine learning (ML) models.
+* **Interactive Data Analysis:** carry out interactive data analysis with BigQuery BI Engine that enables you to analyze large and complex datasets interactively with sub-second query response time and high concurrency.
+* **Predictive Forecasting:** building solid pipelines to capture real-time data for ML modeling and using it as a forecasting engine for situations ranging from weather predictions to market forecasting.
+* **Create Machine Learning models**: using BigQuery ML you can create and execute machine learning models in BigQuery using standard SQL queries. Create a variety of models pre-built into BigQuery that you train with your data.
+  
 ## Architecture
 
 ![GCS to BigQuery High-level diagram](diagram.png "GCS to BigQuery High-level diagram")
