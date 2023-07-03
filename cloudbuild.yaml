@@ -3,8 +3,8 @@ steps:
     args:
       - 'init'
   - name: 'hashicorp/terraform'
-    args: ['plan', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack']
+    args: ['plan', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb']
   - name: 'hashicorp/terraform'
-    args: ['apply', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack', '-auto-approve']
+    args: ['apply', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-auto-approve']
   - name: 'hashicorp/terraform'
-    args: ['destroy', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack', '-auto-approve']
+    args: ['destroy', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-auto-approve']
