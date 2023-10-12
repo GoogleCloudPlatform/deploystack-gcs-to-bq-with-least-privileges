@@ -47,7 +47,7 @@ Pricing Estimates - We have created a sample estimate based on some usage we see
 
 ## Setup
 
-This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you would like for the project to create a new project as well,  please refer to the [github repository](https://github.com/googlestaging/deploystack-gcs-to-bq-with-least-privileges) for instructions.
+This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you want the system to create a new project for you, please refer to the [GitHub repository](https://github.com/googlestaging/deploystack-gcs-to-bq-with-least-privileges) for detailed instructions.
 
 ### Prerequisites
 
@@ -59,7 +59,7 @@ This solution assumes you already have a project created and set up where you wi
 
 In order to spin up this architecture, you will need to be a user with the “__Project owner__” [IAM](https://cloud.google.com/iam) role on the existing project:
 
-__Note__: To grant a user a role, take a look at the [Granting and Revoking Access](https://cloud.google.com/iam/docs/granting-changing-revoking-access#grant-single-role) documentation.
+__Note__: For granting a user a role, consult the documentation on [Granting and Revoking Access](https://cloud.google.com/iam/docs/granting-changing-revoking-access#grant-single-role).
 
 ### Spinning up the architecture
 
@@ -69,7 +69,7 @@ Before we deploy the architecture, you will need the following information:
 * A __unique prefix__ that you want all the deployed resources to have (for example: awesomestartup). This must be a string with no spaces or tabs.
 * A __list of Groups or Users__ with Service Account Token creator role on Service Accounts in IAM format, eg 'group:group@domain.com'.
 
-Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
+Click on the button below. Sign in if necessary. When the prompt appears, click 'Confirm'. The system will guide you through the setup process for your architecture.
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-gcs-to-bq-with-least-privileges&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main&cloudshell_tutorial=tutorial.md)
 
@@ -77,7 +77,7 @@ This is the startup screen that appears after clicking the button and confirming
 
 ![cloud_shell](cloud_shell.png)
 
-During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
+Throughout the process, you will be prompted for user input. Refer to the variables explained at the bottom of this ReadMe file. If the process fails, click the button again to retry.
 
 <center>
 <h4>🎉 Congratulations! 🎉  <br />
@@ -108,17 +108,17 @@ For the purpose of the example we will import a CSV file from GCS to BigQuery. T
 
 We need to create 3 files:
 
-* A person.csv file containing your data in the form name,surname,timestamp.  For example: `Eva,Rivarola,1637771951'.
-* A person_udf.js containing the [UDF javascript file](https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions) used by the Dataflow template.
-* A person_schema.json file containing the table schema used to import the CSV.
-
+* __person.csv__ This file should contain your data in the format: name, surname, timestamp. For instance: `Eva,Rivarola,1637771951'.
+* __person_udf.js__ This file should contain the [User-Defined Function (UDF) JavaScript code ](https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions) used by the Dataflow template.
+* __person_schema.json__ This file should contain the table schema used to import the CSV data.
+     
 An example of those files can be found  in the folder ./data-demo inside the same repository you're currently in.
 
 You can copy the example files into the GCS bucket by running:
 
         gsutil -i gcs-landing@$SERVICE_PROJECT_ID.iam.gserviceaccount.com cp data-demo/* gs://$PREFIX-data
 
-Once this is done, the three files necessary to run the Dataflow Job will have been copied to the GCS bucket that was created along with the resources.
+After completion, the three essential files required to execute the Dataflow Job will be copied to the GCS bucket created alongside the resources.
 
 Run the following command to start the dataflow job:
 
@@ -165,9 +165,9 @@ The easiest way to remove all the deployed resources is to run the following com
 deploystack uninstall
 ```
 
-The above command will delete the associated resources so there will be no billable charges made afterwards.
+The above command will remove the associated resources so there will be no billable charges made afterwards.
 
-Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
+Note: This will also terminate the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
 <!-- BEGIN TFDOC -->
 
 ## Variables
