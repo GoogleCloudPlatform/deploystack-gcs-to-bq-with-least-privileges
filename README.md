@@ -61,7 +61,7 @@ In order to spin up this architecture, you will need to be a user with the “__
 
 __Note__: For granting a user a role, consult the documentation on [Granting and Revoking Access](https://cloud.google.com/iam/docs/granting-changing-revoking-access#grant-single-role).
 
-### Spinning up the architecture
+### Deploy the architecture
 
 Before we deploy the architecture, you will need the following information:
 
