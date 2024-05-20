@@ -13,7 +13,7 @@
 # limitations under the License.
 
 module "service-account-bq" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v31.1.0"
   project_id = module.project.project_id
   name       = "bq-datalake"
 }
