@@ -13,7 +13,7 @@ The following **click-to-deploy** architecture deploys a secure and scalable dat
 
 You can learn more about cloud-based ETL [here](https://cloud.google.com/learn/what-is-etl).
 
-This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/gcs-to-bq-with-least-privileges).
+This repo is based on the Cloud Foundation Fabric blueprint available [here](https://cloud.google.com/products/calculator/estimate-preview/1822bf8a-7787-4298-880b-2805c5a970aa).
 
 ## Use cases
 
