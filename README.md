@@ -43,7 +43,7 @@ For a full list of the resources that will be created, please refer to the [gith
 
 ## Costs
 
-Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator#id=44710202-c9d4-49d5-a378-99d7dd34f5e2).
+Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator?dl=CiQxODIyYmY4YS03Nzg3LTQyOTgtODgwYi0yODA1YzVhOTcwYWEQLBokRTJBNjNDOUUtMTM2MC00NTM0LThGRTAtNjc1MTA5MTc4OTYy).
 
 ## Setup
 
