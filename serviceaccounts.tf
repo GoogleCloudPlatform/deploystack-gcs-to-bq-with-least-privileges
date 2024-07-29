@@ -31,7 +31,7 @@ module "service-account-orch" {
 }
 
 module "service-account-df" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v32.0.1"
   project_id = module.project.project_id
   name       = "df-loading"
 }
