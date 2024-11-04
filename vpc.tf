@@ -38,7 +38,7 @@ module "vpc-firewall" {
 }
 
 module "nat" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v23.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v35.0.0"
   count          = local.use_shared_vpc ? 0 : 1
   project_id     = module.project.project_id
   region         = var.region
