@@ -13,7 +13,7 @@
 # limitations under the License.
 
 module "gcs-data" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v23.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v36.0.1"
   project_id     = module.project.project_id
   prefix         = var.prefix
   name           = "data"
