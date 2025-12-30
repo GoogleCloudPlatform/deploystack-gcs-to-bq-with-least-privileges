@@ -116,8 +116,8 @@ An example of those files can be found  in the folder ./data-demo inside the sam
 
 You can copy the example files into the GCS bucket by running:
 
-        # The following gsutil command was not translated because the top-level flag '-i' is not in the migration guide.
-        gsutil -i gcs-landing@$SERVICE_PROJECT_ID.iam.gserviceaccount.com cp data-demo/* gs://$PREFIX-data
+        gcloud storage cp data-demo/* gs://$PREFIX-data \
+        --impersonate-service-account="gcs-landing@$SERVICE_PROJECT_ID.iam.gserviceaccount.com"
 
 After completion, the three essential files required to execute the Dataflow Job will be copied to the GCS bucket created alongside the resources.
 
