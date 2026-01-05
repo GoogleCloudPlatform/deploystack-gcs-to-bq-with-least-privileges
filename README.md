@@ -13,7 +13,7 @@ The following **click-to-deploy** architecture deploys a secure and scalable dat
 
 You can learn more about cloud-based ETL [here](https://cloud.google.com/learn/what-is-etl).
 
-This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/gcs-to-bq-with-least-privileges).
+This repo is based on the Cloud Foundation Fabric blueprint available [here](https://cloud.google.com/products/calculator/estimate-preview/1822bf8a-7787-4298-880b-2805c5a970aa).
 
 ## Use cases
 
@@ -43,7 +43,7 @@ For a full list of the resources that will be created, please refer to the [gith
 
 ## Costs
 
-Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator#id=44710202-c9d4-49d5-a378-99d7dd34f5e2).
+Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator?dl=CiQxODIyYmY4YS03Nzg3LTQyOTgtODgwYi0yODA1YzVhOTcwYWEQLBokRTJBNjNDOUUtMTM2MC00NTM0LThGRTAtNjc1MTA5MTc4OTYy).
 
 ## Setup
 
