@@ -67,7 +67,8 @@ An example of those files can be found  in the folder ./data-demo inside the sam
 
 You can copy the example files into the GCS bucket by running:
 
-        gsutil -i gcs-landing@$SERVICE_PROJECT_ID.iam.gserviceaccount.com cp data-demo/* gs://$PREFIX-data
+        gcloud storage cp data-demo/* gs://$PREFIX-data \
+        --impersonate-service-account="gcs-landing@$SERVICE_PROJECT_ID.iam.gserviceaccount.com"
 
 Once this is done, the three files necessary to run the Dataflow Job will have been copied to the GCS bucket that was created along with the resources.
 

@@ -42,7 +42,7 @@ output "service_accounts" {
 
 output "command_01_gcs" {
   description = "gcloud command to copy data into the created bucket impersonating the service account."
-  value       = "gsutil -i ${module.service-account-landing.email} cp data-demo/* ${module.gcs-data.url}"
+  value       = "gcloud storage cp data-demo/* ${module.gcs-data.url} --impersonate-service-account=${module.service-account-landing.email}"
 }
 
 output "command_02_dataflow" {
