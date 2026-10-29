@@ -14,33 +14,34 @@
 
 module "kms" {
   count      = var.cmek_encryption ? 1 : 0
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/kms?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/kms?ref=v59.2.0"
   project_id = module.project.project_id
   keyring = {
     name     = "${var.prefix}-keyring"
     location = var.region
   }
   keys = {
-    key-df  = null
-    key-gcs = null
-    key-bq  = null
-  }
-  key_iam = {
-    key-gcs = {
-      "roles/cloudkms.cryptoKeyEncrypterDecrypter" = [
-        "serviceAccount:${module.project.service_accounts.robots.storage}"
-      ]
-    },
-    key-bq = {
-      "roles/cloudkms.cryptoKeyEncrypterDecrypter" = [
-        "serviceAccount:${module.project.service_accounts.robots.bq}"
-      ]
-    },
     key-df = {
-      "roles/cloudkms.cryptoKeyEncrypterDecrypter" = [
-        "serviceAccount:${module.project.service_accounts.robots.dataflow}",
-        "serviceAccount:${module.project.service_accounts.robots.compute}",
-      ]
+      iam = {
+        "roles/cloudkms.cryptoKeyEncrypterDecrypter" = [
+          module.project.service_agents.dataflow.iam_email,
+          module.project.service_agents.compute.iam_email,
+        ]
+      }
+    }
+    key-gcs = {
+      iam = {
+        "roles/cloudkms.cryptoKeyEncrypterDecrypter" = [
+          module.project.service_agents.storage.iam_email
+        ]
+      }
+    }
+    key-bq = {
+      iam = {
+        "roles/cloudkms.cryptoKeyEncrypterDecrypter" = [
+          module.project.service_agents.bq.iam_email
+        ]
+      }
     }
   }
 }

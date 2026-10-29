@@ -13,7 +13,7 @@ The following **click-to-deploy** architecture deploys a secure and scalable dat
 
 You can learn more about cloud-based ETL [here](https://cloud.google.com/learn/what-is-etl).
 
-This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/gcs-to-bq-with-least-privileges).
+This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/v43.0.0/blueprints/data-solutions/gcs-to-bq-with-least-privileges).
 
 ## Use cases
 
@@ -39,15 +39,15 @@ The main components that we would be setting up are (to learn more about these p
 * [BigQuery datasets and tables](https://cloud.google.com/bigquery): to store the transformed data in and query it using SQL, use it to make reports or begin training [machine learning](https://cloud.google.com/bigquery-ml/docs/introduction) models without having to take your data out.
 * [Service accounts](https://cloud.google.com/iam/docs/service-accounts) (__created with least privilege on each resource__): one for uploading data into the GCS bucket, one for Orchestration, one for Dataflow instances and one for the BigQuery tables. You can also configure users or groups of users to assign them a viewer role on the created resources and the ability to impersonate service accounts to test the Dataflow pipelines before automating them with a tool like [Cloud Composer](https://cloud.google.com/composer).
 
-For a full list of the resources that will be created, please refer to the [github repository](https://github.com/googlestaging/deploystack-gcs-to-bq-with-least-privileges) for this project. If you're migrating from another Cloud Provider, refer to [this](https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison) documentation to see equivalent services and comparisons in Microsoft Azure and Amazon Web Services
+For a full list of the resources that will be created, please refer to the [github repository](https://github.com/GoogleCloudPlatform/deploystack-gcs-to-bq-with-least-privileges) for this project. If you're migrating from another Cloud Provider, refer to [this](https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison) documentation to see equivalent services and comparisons in Microsoft Azure and Amazon Web Services
 
 ## Costs
 
-Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator#id=44710202-c9d4-49d5-a378-99d7dd34f5e2).
+Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator?dl=CiQxODIyYmY4YS03Nzg3LTQyOTgtODgwYi0yODA1YzVhOTcwYWEQLBokRTJBNjNDOUUtMTM2MC00NTM0LThGRTAtNjc1MTA5MTc4OTYy).
 
 ## Setup
 
-This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you want the system to create a new project for you, please refer to the [GitHub repository](https://github.com/googlestaging/deploystack-gcs-to-bq-with-least-privileges) for detailed instructions.
+This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you want the system to create a new project for you, please refer to the [GitHub repository](https://github.com/GoogleCloudPlatform/deploystack-gcs-to-bq-with-least-privileges) for detailed instructions.
 
 ### Prerequisites
 
@@ -79,11 +79,17 @@ This is the startup screen that appears after clicking the button and confirming
 
 Throughout the process, you will be prompted for user input. Refer to the variables explained at the bottom of this ReadMe file. If the process fails, click the button again to retry.
 
+> **Note (Cloud Shell / DeployStack Troubleshooting)**: If the Cloud Shell `deploystack_custom_image` container fails to launch `dsexec` (for example, `dsexec: ... version 'GLIBC_2.32' not found`) or has a Terraform version older than `1.12.2`, run the following command in your Cloud Shell terminal to rebuild a static `dsexec` binary, upgrade Terraform to `>= 1.12.2`, and restart the installer:
+>
+> ``` {shell}
+> . .deploystack/scripts/preinstall.sh && deploystack install
+> ```
+>
+> Alternatively, you can deploy directly with Terraform by following the [Standalone deployment](#standalone-deployment) section below.
+
 <center>
 <h4>🎉 Congratulations! 🎉  <br />
 You have successfully deployed the foundation for running your first ETL pipeline on Google Cloud.</h4></center>
-
-
 
 ### Testing your architecture
 
@@ -100,7 +106,7 @@ To make the next steps easier, create two environment variables with the service
 
 Again, make sure you’re in the following directory:
 
-        cloudshell_open/cloud-foundation-fabric/blueprints/data-solutions/gcs-to-bq-with-least-privileges
+        cloudshell_open/deploystack-gcs-to-bq-with-least-privileges
 
 For the purpose of the example we will import a CSV file from GCS to BigQuery. This has the following structure:
 
@@ -168,7 +174,19 @@ deploystack uninstall
 
 The above command will remove the associated resources so there will be no billable charges made afterwards.
 
-Note: This will also terminate the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
+Note: This will also terminate the BigQuery dataset as the following option in `datastorage.tf` is set to `true`: `delete_contents_on_destroy`.
+
+## Standalone deployment
+
+Since the scripts are based on Terraform (`>= 1.12.2`), it is possible to deploy this solution through `Terraform` directly, without having to go through `Deploystack`. (When using `deploystack install`, `.deploystack/scripts/preinit.sh` automatically upgrades Terraform if the Cloud Shell image has an older version installed; for standalone deployments in Cloud Shell, run `tfswitch 1.12.2` or `. .deploystack/scripts/preinit.sh` first.)
+
+Just clone this repo, create a `terraform.tfvars` file with your own values and call the following commands:
+``` {shell}
+terraform init
+terraform plan -out=execplan.out
+terraform apply execplan.out
+```
+
 <!-- BEGIN TFDOC -->
 
 ## Variables

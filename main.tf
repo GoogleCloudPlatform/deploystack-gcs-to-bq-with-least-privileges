@@ -74,8 +74,18 @@ locals {
     # network roles
     "roles/compute.networkUser" = [
       module.service-account-df.iam_email,
-      "serviceAccount:${module.project.service_accounts.robots.dataflow}"
     ]
+  }
+  # this only works because the service account module uses a static output
+  iam_additive = {
+    for k in flatten([
+      for role, members in local.iam : [
+        for member in members : {
+          role   = role
+          member = member
+        }
+      ]
+    ]) : "${k.member}-${k.role}" => k
   }
   network_subnet_selflink = try(
     module.vpc[0].subnets["${var.region}/subnet"].self_link,
@@ -96,18 +106,18 @@ locals {
   }
   shared_vpc_project = try(var.network_config.host_project, null)
   shared_vpc_role_members = {
-    robot-df     = "serviceAccount:${module.project.service_accounts.robots.dataflow}"
+    robot-df     = module.project.service_agents.dataflow.iam_email
     sa-df-worker = module.service-account-df.iam_email
   }
   use_shared_vpc = var.network_config != null
 }
 
 module "project" {
-  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v23.0.0"
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v59.2.0"
   name            = var.project_id
   parent          = try(var.project_create.parent, null)
   billing_account = try(var.project_create.billing_account_id, null)
-  project_create  = var.project_create != null
+  project_reuse   = var.project_create != null ? null : {}
   prefix          = var.project_create == null ? null : var.prefix
   services = [
     "bigquery.googleapis.com",
@@ -123,12 +133,10 @@ module "project" {
   ]
 
   # additive IAM bindings avoid disrupting bindings in existing project
-  iam          = var.project_create != null ? local.iam : {}
-  iam_additive = var.project_create == null ? local.iam : {}
-  shared_vpc_service_config = local.shared_vpc_project == null ? null : {
-    attach               = true
-    host_project         = local.shared_vpc_project
-    service_identity_iam = {}
+  iam                   = var.project_create != null ? local.iam : {}
+  iam_bindings_additive = var.project_create == null ? local.iam_additive : {}
+  shared_vpc_service_config = {
+    host_project = local.shared_vpc_project
   }
 }
 

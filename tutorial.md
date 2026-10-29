@@ -2,7 +2,7 @@
 
 ## Let's get started
 
-This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you would like for the project to create a new project as well,  please refer to the [github repository](https://github.com/googlestaging/deploystack-gcs-to-bq-with-least-privileges) for instructions.
+This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you would like for the project to create a new project as well,  please refer to the [github repository](https://github.com/GoogleCloudPlatform/deploystack-gcs-to-bq-with-least-privileges) for instructions.
 
 **Time to complete**: About 10 minutes
 
@@ -28,6 +28,8 @@ Before we deploy the architecture, you will need the following information:
 * A __unique prefix__ that you want all the deployed resources to have (for example: awesomestartup). This must be a string with no spaces or tabs.
 * A __list of Groups or Users__ with Service Account Token creator role on Service Accounts in IAM format, eg 'group:group@domain.com'.
 
+If the Cloud Shell `deploystack_custom_image` container encounters a `dsexec` `GLIBC` error or an older Terraform version (`< 1.12.2`), run `. .deploystack/scripts/preinstall.sh && deploystack install` in your Cloud Shell terminal.
+
 ## Result
 
 <center>
@@ -51,7 +53,7 @@ To make the next steps easier, create two environment variables with the service
 
 Again, make sure you’re in the following directory:
 
-        cloudshell_open/cloud-foundation-fabric/blueprints/data-solutions/gcs-to-bq-with-least-privileges
+        cloudshell_open/deploystack-gcs-to-bq-with-least-privileges
 
 For the purpose of the example we will import a CSV file from GCS to BigQuery. This has the following structure:
 
@@ -119,12 +121,12 @@ deploystack uninstall
 
 The above command will delete the associated resources so there will be no billable charges made afterwards.
 
-Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
+Note: This will also destroy the BigQuery dataset as the following option in `datastorage.tf` is set to `true`: `delete_contents_on_destroy`.
 <!-- BEGIN TFDOC -->
 
 ## Variables & Outputs
 
-For full information on variables and outputs please refer to the [README](https://github.com/GoogleCloudPlatform/deploystack-gcs-to-bq-with-least-privileges/edit/main/README.md#variables) file.
+For full information on variables and outputs please refer to the [README](https://github.com/GoogleCloudPlatform/deploystack-gcs-to-bq-with-least-privileges/blob/main/README.md#variables) file.
 
 ## Congratulations
 
