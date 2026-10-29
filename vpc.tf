@@ -13,22 +13,21 @@
 # limitations under the License.
 
 module "vpc" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v59.2.0"
   count      = local.use_shared_vpc ? 0 : 1
   project_id = module.project.project_id
   name       = "${var.prefix}-vpc"
   subnets = [
     {
-      ip_cidr_range      = var.vpc_subnet_range
-      name               = "subnet"
-      region             = var.region
-      secondary_ip_range = {}
+      ip_cidr_range = var.vpc_subnet_range
+      name          = "subnet"
+      region        = var.region
     }
   ]
 }
 
 module "vpc-firewall" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v59.2.0"
   count      = local.use_shared_vpc ? 0 : 1
   project_id = module.project.project_id
   network    = module.vpc[0].name
@@ -38,7 +37,7 @@ module "vpc-firewall" {
 }
 
 module "nat" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v23.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v59.2.0"
   count          = local.use_shared_vpc ? 0 : 1
   project_id     = module.project.project_id
   region         = var.region
